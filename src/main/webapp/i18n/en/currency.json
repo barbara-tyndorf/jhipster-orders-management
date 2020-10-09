@@ -1,0 +1,10 @@
+{
+  "ordersManagementApp": {
+    "Currency": {
+      "null": "",
+      "PLN": "PLN",
+      "EUR": "EUR",
+      "USD": "USD"
+    }
+  }
+}

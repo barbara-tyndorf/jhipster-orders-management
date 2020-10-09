@@ -1,0 +1,28 @@
+{
+  "ordersManagementApp": {
+    "contractor": {
+      "home": {
+        "title": "Contractors",
+        "createLabel": "Create a new Contractor",
+        "createOrEditLabel": "Create or edit a Contractor",
+        "notFound": "No Contractors found"
+      },
+      "created": "A new Contractor is created with identifier {{ param }}",
+      "updated": "A Contractor is updated with identifier {{ param }}",
+      "deleted": "A Contractor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Contractor {{ id }}?"
+      },
+      "detail": {
+        "title": "Contractor"
+      },
+      "name": "Name",
+      "vatId": "Vat Id",
+      "contactPerson": "Contact Person",
+      "phoneNumber": "Phone Number",
+      "address": "Address",
+      "order": "Order",
+      "order": "Order"
+    }
+  }
+}

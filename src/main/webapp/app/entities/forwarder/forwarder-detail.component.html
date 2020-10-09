@@ -1,0 +1,51 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="forwarder">
+            <h2><span jhiTranslate="ordersManagementApp.forwarder.detail.title">Forwarder</span> {{forwarder.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{forwarder.firstName}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{forwarder.lastName}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.email">Email</span></dt>
+                <dd>
+                    <span>{{forwarder.email}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{forwarder.phoneNumber}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.hireDate">Hire Date</span></dt>
+                <dd>
+                    <span>{{forwarder.hireDate}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.salary">Salary</span></dt>
+                <dd>
+                    <span>{{forwarder.salary}}</span>
+                </dd>
+                <dt><span jhiTranslate="ordersManagementApp.forwarder.branch">Branch</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'ordersManagementApp.Branch.' + forwarder.branch}}">{{forwarder.branch}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/forwarder', forwarder.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+{
+    "name": "Order",
+    "fields": [
+        {
+            "fieldName": "customerPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "carrierPrice",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "customerCurrency",
+            "fieldType": "Currency",
+            "fieldValues": "PLN,EUR,USD"
+        },
+        {
+            "fieldName": "carrierCurrency",
+            "fieldType": "Currency",
+            "fieldValues": "PLN,EUR,USD"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "contractor",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "customer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "contractor",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "carrier",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "forwarder",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "forwarder",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "loadingPlace",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "order",
+            "relationshipName": "unloadingPlace",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20201005113317",
+    "entityTableName": "order",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

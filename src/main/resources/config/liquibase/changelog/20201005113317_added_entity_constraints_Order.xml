@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Order.
+    -->
+    <changeSet id="20201005113317-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="jhi_order"
+                                 constraintName="fk_jhi_order_customer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contractor"/>
+
+        <addForeignKeyConstraint baseColumnNames="carrier_id"
+                                 baseTableName="jhi_order"
+                                 constraintName="fk_jhi_order_carrier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="contractor"/>
+
+        <addForeignKeyConstraint baseColumnNames="forwarder_id"
+                                 baseTableName="jhi_order"
+                                 constraintName="fk_jhi_order_forwarder_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="forwarder"/>
+
+        <addForeignKeyConstraint baseColumnNames="loading_place_id"
+                                 baseTableName="jhi_order"
+                                 constraintName="fk_jhi_order_loading_place_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+        <addForeignKeyConstraint baseColumnNames="unloading_place_id"
+                                 baseTableName="jhi_order"
+                                 constraintName="fk_jhi_order_unloading_place_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="address"/>
+
+    </changeSet>
+</databaseChangeLog>

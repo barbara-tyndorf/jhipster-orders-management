@@ -1,0 +1,91 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ordersManagementApp.order.home.title">Orders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-order" [routerLink]="['/order/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="ordersManagementApp.order.home.createLabel">
+            Create a new Order
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="orders?.length === 0">
+        <span jhiTranslate="ordersManagementApp.order.home.notFound">No orders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="orders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.customerPrice">Customer Price</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.carrierPrice">Carrier Price</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.customerCurrency">Customer Currency</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.carrierCurrency">Carrier Currency</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.customer">Customer</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.carrier">Carrier</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.forwarder">Forwarder</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.loadingPlace">Loading Place</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.order.unloadingPlace">Unloading Place</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let order of orders ;trackBy: trackId">
+                <td><a [routerLink]="['/order', order.id, 'view' ]">{{order.id}}</a></td>
+                <td>{{order.customerPrice}}</td>
+                <td>{{order.carrierPrice}}</td>
+                <td jhiTranslate="{{'ordersManagementApp.Currency.' + order.customerCurrency}}">{{order.customerCurrency}}</td>
+                <td jhiTranslate="{{'ordersManagementApp.Currency.' + order.carrierCurrency}}">{{order.carrierCurrency}}</td>
+                <td>
+                    <div *ngIf="order.customer">
+                        <a [routerLink]="['/contractor', order.customer?.id, 'view' ]" >{{order.customer?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="order.carrier">
+                        <a [routerLink]="['/contractor', order.carrier?.id, 'view' ]" >{{order.carrier?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="order.forwarder">
+                        <a [routerLink]="['/forwarder', order.forwarder?.id, 'view' ]" >{{order.forwarder?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="order.loadingPlace">
+                        <a [routerLink]="['/address', order.loadingPlace?.id, 'view' ]" >{{order.loadingPlace?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="order.unloadingPlace">
+                        <a [routerLink]="['/address', order.unloadingPlace?.id, 'view' ]" >{{order.unloadingPlace?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/order', order.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/order', order.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(order)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

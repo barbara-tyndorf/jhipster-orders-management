@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ordersManagementApp.forwarder.home.title">Forwarders</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-forwarder" [routerLink]="['/forwarder/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="ordersManagementApp.forwarder.home.createLabel">
+            Create a new Forwarder
+            </span>
+        </button>
+    </h2>
+    <jhi-alert-error></jhi-alert-error>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="forwarders?.length === 0">
+        <span jhiTranslate="ordersManagementApp.forwarder.home.notFound">No forwarders found</span>
+    </div>
+    <div class="table-responsive" *ngIf="forwarders?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.firstName">First Name</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.lastName">Last Name</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.email">Email</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.phoneNumber">Phone Number</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.hireDate">Hire Date</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.salary">Salary</span></th>
+            <th scope="col" ><span jhiTranslate="ordersManagementApp.forwarder.branch">Branch</span></th>
+            <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let forwarder of forwarders ;trackBy: trackId">
+                <td><a [routerLink]="['/forwarder', forwarder.id, 'view' ]">{{forwarder.id}}</a></td>
+                <td>{{forwarder.firstName}}</td>
+                <td>{{forwarder.lastName}}</td>
+                <td>{{forwarder.email}}</td>
+                <td>{{forwarder.phoneNumber}}</td>
+                <td>{{forwarder.hireDate | date:'medium'}}</td>
+                <td>{{forwarder.salary}}</td>
+                <td jhiTranslate="{{'ordersManagementApp.Branch.' + forwarder.branch}}">{{forwarder.branch}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/forwarder', forwarder.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/forwarder', forwarder.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit" (click)="delete(forwarder)"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

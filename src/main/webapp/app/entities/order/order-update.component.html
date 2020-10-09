@@ -1,0 +1,85 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-order-heading" jhiTranslate="ordersManagementApp.order.home.createOrEditLabel">Create or edit a Order</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.customerPrice" for="field_customerPrice">Customer Price</label>
+                    <input type="number" class="form-control" name="customerPrice" id="field_customerPrice"
+                           formControlName="customerPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.carrierPrice" for="field_carrierPrice">Carrier Price</label>
+                    <input type="number" class="form-control" name="carrierPrice" id="field_carrierPrice"
+                           formControlName="carrierPrice"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.customerCurrency" for="field_customerCurrency">Customer Currency</label>
+                    <select class="form-control" name="customerCurrency" formControlName="customerCurrency" id="field_customerCurrency">
+                        <option value="PLN">{{'ordersManagementApp.Currency.PLN' | translate}}</option>
+                        <option value="EUR">{{'ordersManagementApp.Currency.EUR' | translate}}</option>
+                        <option value="USD">{{'ordersManagementApp.Currency.USD' | translate}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.carrierCurrency" for="field_carrierCurrency">Carrier Currency</label>
+                    <select class="form-control" name="carrierCurrency" formControlName="carrierCurrency" id="field_carrierCurrency">
+                        <option value="PLN">{{'ordersManagementApp.Currency.PLN' | translate}}</option>
+                        <option value="EUR">{{'ordersManagementApp.Currency.EUR' | translate}}</option>
+                        <option value="USD">{{'ordersManagementApp.Currency.USD' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.customer" for="field_customer">Customer</label>
+                    <select class="form-control" id="field_customer" name="customer" formControlName="customer">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contractorOption.id === editForm.get('customer')!.value?.id ? editForm.get('customer')!.value : contractorOption" *ngFor="let contractorOption of contractors; trackBy: trackById">{{contractorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.carrier" for="field_carrier">Carrier</label>
+                    <select class="form-control" id="field_carrier" name="carrier" formControlName="carrier">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="contractorOption.id === editForm.get('carrier')!.value?.id ? editForm.get('carrier')!.value : contractorOption" *ngFor="let contractorOption of contractors; trackBy: trackById">{{contractorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.forwarder" for="field_forwarder">Forwarder</label>
+                    <select class="form-control" id="field_forwarder" name="forwarder" formControlName="forwarder">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="forwarderOption.id === editForm.get('forwarder')!.value?.id ? editForm.get('forwarder')!.value : forwarderOption" *ngFor="let forwarderOption of forwarders; trackBy: trackById">{{forwarderOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.loadingPlace" for="field_loadingPlace">Loading Place</label>
+                    <select class="form-control" id="field_loadingPlace" name="loadingPlace" formControlName="loadingPlace">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="addressOption.id === editForm.get('loadingPlace')!.value?.id ? editForm.get('loadingPlace')!.value : addressOption" *ngFor="let addressOption of addresses; trackBy: trackById">{{addressOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ordersManagementApp.order.unloadingPlace" for="field_unloadingPlace">Unloading Place</label>
+                    <select class="form-control" id="field_unloadingPlace" name="unloadingPlace" formControlName="unloadingPlace">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="addressOption.id === editForm.get('unloadingPlace')!.value?.id ? editForm.get('unloadingPlace')!.value : addressOption" *ngFor="let addressOption of addresses; trackBy: trackById">{{addressOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

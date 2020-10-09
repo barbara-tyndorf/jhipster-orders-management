@@ -1,0 +1,47 @@
+entity Address {
+	name String,
+	street String,
+    number Integer,
+	zip String,
+	city String,
+	countryCode String
+}
+entity Contractor {
+	name String,
+    vatId String,
+    contactPerson String,
+    phoneNumber String
+}
+enum Branch {
+    SZC, WAW, POZ
+}
+entity Forwarder {
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String,
+	hireDate Instant,
+	salary Long,
+    branch Branch
+}
+entity Order {
+	customerPrice BigDecimal,
+    carrierPrice BigDecimal,
+    customerCurrency Currency,
+    carrierCurrency Currency
+}
+enum Currency {
+	PLN, EUR, USD
+}
+relationship OneToOne {
+	Contractor{address} to Address
+}
+relationship ManyToOne {
+	Order{customer} to Contractor{customer},
+    Order{carrier} to COntractor{carrier}
+}
+//relationship OneToMany {
+//	Department to Employee{department},
+//    Contractor to Order{customerOrders},
+//    Contractor to Order{carrier}
+//}
